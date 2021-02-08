@@ -21,9 +21,9 @@ class Comments extends Component
 
     public function addComment()
     {
-        if ($this->newComment == '') {
-            return;
-        }
+        $this->validate([
+            'newComment' => 'required|max:255'
+        ]);
 
         $createdComment = Comment::create([
             'body' => $this->newComment,
@@ -38,6 +38,13 @@ class Comments extends Component
             'creator' => 'Cacao'
         ]);*/
         $this->newComment = '';
+    }
+
+    public function remove($commentId)
+    {
+        $comment = Comment::find($commentId);
+        $comment->delete();
+        $this->comments = $this->comments->except($commentId);
     }
 
     public function render()
