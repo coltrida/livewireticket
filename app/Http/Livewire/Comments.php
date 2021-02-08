@@ -32,12 +32,9 @@ class Comments extends Component
 
         $this->comments->prepend($createdComment);
 
-/*        array_unshift($this->comments, [
-            'body' => $this->newComment,
-            'created_at' => Carbon::now()->diffForHumans(),
-            'creator' => 'Cacao'
-        ]);*/
+
         $this->newComment = '';
+        session()->flash('message', 'comment added successfully');
     }
 
     public function remove($commentId)
@@ -45,6 +42,7 @@ class Comments extends Component
         $comment = Comment::find($commentId);
         $comment->delete();
         $this->comments = $this->comments->except($commentId);
+        session()->flash('message', 'comment deleted successfully');
     }
 
     public function render()
