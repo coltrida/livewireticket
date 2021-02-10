@@ -44,13 +44,5 @@
 </div>
 
 <script>
-    Livewire.on('fileChoosen', () => {
-        let inputField = document.getElementById('image');
-        let file = inputField.files[0];
-        let reader = new FileReader();
-        reader.onloadend = () => {
-            Livewire.emit('fileUpload', reader.result)
-        }
-        reader.readAsDataURL(file);
-    })
+
 </script>
